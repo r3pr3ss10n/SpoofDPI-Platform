@@ -16,6 +16,12 @@
             android:name=".ProxyService"
             android:foregroundServiceType="specialUse" />
 
+        <service
+            android:name=".ProxyVpnService"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:foregroundServiceType="specialUse"
+            android:exported="false">
+        </service>
 
         <activity
             android:name=".MainActivity"

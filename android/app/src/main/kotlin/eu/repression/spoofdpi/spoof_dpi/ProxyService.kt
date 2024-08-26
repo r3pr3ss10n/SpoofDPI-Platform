@@ -8,8 +8,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.*
+import android.util.Log
 
 class ProxyService : Service() {
 
@@ -19,35 +19,20 @@ class ProxyService : Service() {
 
     private var spoofDpiProcess: Process? = null
 
-    private fun setProxy() {
-        Shell.cmd("settings put global http_proxy 127.0.0.1:8080").exec()
-        val result = Shell.cmd("settings get global http_proxy").exec().out
-        println("Proxy set to: $result")
-    }
-
-    private fun clearProxy() {
-        Shell.cmd("settings put global http_proxy :0").exec()
-        val result = Shell.cmd("settings get global http_proxy").exec().out
-        println("Proxy cleared. Current value: $result")
-    }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         isRunning = true
         startForegroundService()
         startSpoofDpi()
-        setProxy()
         return START_STICKY
     }
 
     override fun onDestroy() {
         super.onDestroy()
         stopSpoofDpi()
-        clearProxy()
         isRunning = false
     }
 
     private fun startForegroundService() {
-
         val channelId = "proxy_service_channel"
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
@@ -70,7 +55,7 @@ class ProxyService : Service() {
             .setContentIntent(pendingIntent)
             .build()
 
-            startForeground(1, notification)
+        startForeground(1, notification)
     }
 
     private fun startSpoofDpi() {
@@ -82,6 +67,7 @@ class ProxyService : Service() {
                 spoofDpiProcess = Runtime.getRuntime().exec(command)
                 spoofDpiProcess?.waitFor()
             } catch (e: Exception) {
+                Log.e("ProxyService", "Error starting spoof DPI", e)
                 spoofDpiProcess = null
                 stopSelf()
             }
@@ -93,8 +79,7 @@ class ProxyService : Service() {
         spoofDpiProcess = null
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
+    override fun onBind(p0: Intent?): IBinder? {
         return null
     }
 }
-
