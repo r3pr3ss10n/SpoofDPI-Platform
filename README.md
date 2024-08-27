@@ -1,29 +1,22 @@
 # SpoofDPI-Platform
 
-**WARNING! UNDER DEVELOPMENT!**
+**SpoofDPI-Platform** is a solution for bypassing DPI-based internet restrictions. It serves as a user-friendly wrapper for the [SpoofDPI](https://github.com/xvzc/SpoofDPI).
 
-SpoofDPI-Platform is designed to help you bypass DPI-based internet restrictions. It acts as a wrapper for the [SpoofDPI application](https://github.com/xvzc/SpoofDPI).
+**Supported Platforms:**
+- Android
+- MacOS and Windows (coming soon!)
 
-## How to Use
+## Getting Started
 
-1. **Install the Application**: Download and install the app. Click the "Start Service" button to begin.
+1. **Install the Application**: Download and install SpoofDPI-Platform from the provided link.
+2. **Launch the App**: Open the app and click the "Start Service" button to activate it.
 
-2. **With Root Privileges**:
-    - If you have root access via [KernelSU](https://github.com/tiann/KernelSU), [Magisk](https://github.com/topjohnwu/Magisk), or [APatch](https://github.com/bmax121/APatch), the application will automatically configure the proxy server for you and disable it upon shutdown. Don't forget to provide app root access before starting service!
+**Advanced Users**: You can customize settings such as DNS address or window size according to your preferences.
 
-3. **Without Root Privileges**:
-    - If you do not have root access, you can still use the app. After enabling the service, go to your phone's settings:
-        - Navigate to Wi-Fi > Your WI-FI network -> Advanced Settings > Proxy.
-        - Set the address provided by the app.
+## Note
 
-4. **Start Browsing**: You should now be able to browse the internet with fewer restrictions.
-
-## Future Plans
-
-1. Develop MacOS and Windows versions of the application.
-2. Implement an in-app VPN service for users without root access.
-3. Additional features and improvements (details to be determined).
+No root access is required! SpoofDPI-Platform operates in VPN mode.
 
 ## Acknowledgements
 
-- Special thanks to [xvzc](https://github.com/xvzc/) for the [SpoofDPI](https://github.com/xvzc/SpoofDPI) application.
+A big thanks to [xvzc](https://github.com/xvzc/) for developing the [SpoofDPI](https://github.com/xvzc/SpoofDPI) application.
