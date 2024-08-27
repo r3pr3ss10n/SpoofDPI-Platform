@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:sp_util/sp_util.dart';
-
 import 'globals.dart';
 
 void main() async {
@@ -69,6 +69,7 @@ class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isRunning = useState<bool>(false);
+    final isPreparing = useState<bool>(false);
 
     Future<void> checkIfRunning() async {
       try {
@@ -126,14 +127,36 @@ class HomePage extends HookWidget {
           await platform.invokeMethod('stop_proxy');
           isRunning.value = false;
         } on PlatformException catch (e) {
+          isPreparing.value = false;
           print("Failed to stop proxy: '${e.message}'.");
         }
       } else {
         try {
+          isPreparing.value = true;
           var params = buildParams();
           await platform.invokeMethod('start_proxy', {'params': params, 'vpn_mode': SpUtil.getBool('use_vpn_mode', defValue: true)});
+          isPreparing.value = false;
           isRunning.value = true;
         } on PlatformException catch (e) {
+          isPreparing.value = false;
+          isRunning.value = false;
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text("Произошла ошибка!"),
+                content: Text('Если у Вас включен VPN - выключите его.\n Error: ${e.message}'),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
           print("Failed to start proxy: '${e.message}'.");
         }
       }
@@ -158,6 +181,7 @@ class HomePage extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            if (Platform.isAndroid || (!Platform.isAndroid && !isPreparing.value))
             ElevatedButton.icon(
               onPressed: toggleProxy,
               icon: Icon(
@@ -166,6 +190,23 @@ class HomePage extends HookWidget {
               ),
               label: Text(isRunning.value ? 'Stop service' : 'Start service'),
             ),
+            if (!Platform.isAndroid && isPreparing.value)
+              SizedBox(
+                width: 200,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const CircularProgressIndicator(),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Starting...',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
           ],
         ),
       ),
@@ -221,6 +262,7 @@ class SettingsPage extends HookWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            if (Platform.isAndroid)
             CheckboxListTile(
               secondary: const Icon(Icons.vpn_key),
               title: const Text('Use VPN mode'),

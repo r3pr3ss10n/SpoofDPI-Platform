@@ -6,7 +6,8 @@ For the Russian version of this README, click [here](https://github.com/r3pr3ss1
 
 **Supported Platforms:**
 - Android
-- MacOS and Windows (coming soon!)
+- MacOS (Both Intel and Apple Silicon chip)
+- Windows (coming soon!)
 
 ## Getting Started
 
@@ -15,9 +16,13 @@ For the Russian version of this README, click [here](https://github.com/r3pr3ss1
 
 **Advanced Users**: You can customize settings such as DNS address or window size according to your preferences.
 
-## Note
+## Notes
 
+### Android
 No root access is required! SpoofDPI-Platform operates in VPN mode.
+
+### MacOS
+App works in system proxy mode.
 
 ## Acknowledgements
 

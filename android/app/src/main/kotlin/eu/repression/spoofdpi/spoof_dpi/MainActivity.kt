@@ -70,7 +70,6 @@ class MainActivity: FlutterActivity() {
     private fun startProxyService(call: MethodCall, result: MethodChannel.Result) {
         val serviceIntent = Intent(this, ProxyService::class.java)
 
-        // Get params from Flutter
         val params = call.argument<String>("params")
         serviceIntent.putExtra("params", params)
 

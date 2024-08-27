@@ -24,10 +24,11 @@
 		331C80D8294CF71000263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C80D7294CF71000263BE5 /* RunnerTests.swift */; };
 		335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */; };
 		33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC10F02044A3C60003C045 /* AppDelegate.swift */; };
-		33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F22044A3C60003C045 /* Assets.xcassets */; };
 		33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F42044A3C60003C045 /* MainMenu.xib */; };
 		33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC11122044BFA00003C045 /* MainFlutterWindow.swift */; };
 		6609EB15431E9B70AACCCF19 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD17CDE526C534D2D8DF4E2C /* Pods_Runner.framework */; };
+		EA1D29532C7E76C3007FFC14 /* spoofdpi_arm in Resources */ = {isa = PBXBuildFile; fileRef = EA1D29522C7E76C3007FFC14 /* spoofdpi_arm */; };
+		EA1D29552C7E8823007FFC14 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = EA1D29542C7E8823007FFC14 /* AppIcon.icns */; };
 		EAF5E6C32C79FD00002F92A0 /* spoofdpi in Resources */ = {isa = PBXBuildFile; fileRef = EAF5E6C22C79FD00002F92A0 /* spoofdpi */; };
 		FB6CCDB1D019139187A7D1AC /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED2C09F6B82A4E18BB6EDF3 /* Pods_RunnerTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,7 +70,6 @@
 		335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedPluginRegistrant.swift; sourceTree = "<group>"; };
 		33CC10ED2044A3C60003C045 /* SpoofDPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpoofDPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CC10F02044A3C60003C045 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		33CC10F22044A3C60003C045 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Runner/Assets.xcassets; sourceTree = "<group>"; };
 		33CC10F52044A3C60003C045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		33CC10F72044A3C60003C045 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Runner/Info.plist; sourceTree = "<group>"; };
 		33CC11122044BFA00003C045 /* MainFlutterWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlutterWindow.swift; sourceTree = "<group>"; };
@@ -89,6 +89,8 @@
 		9F2F0C303DDF03C03C70ED60 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		AF202DB1DF8C9972D5831A66 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		BD17CDE526C534D2D8DF4E2C /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA1D29522C7E76C3007FFC14 /* spoofdpi_arm */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = spoofdpi_arm; path = bin/spoofdpi_arm; sourceTree = "<group>"; };
+		EA1D29542C7E8823007FFC14 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		EAF5E6C22C79FD00002F92A0 /* spoofdpi */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = spoofdpi; path = bin/spoofdpi; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 		33CC10E42044A3C60003C045 = {
 			isa = PBXGroup;
 			children = (
+				EA1D29522C7E76C3007FFC14 /* spoofdpi_arm */,
 				EAF5E6C22C79FD00002F92A0 /* spoofdpi */,
 				33FAB671232836740065AC1E /* Runner */,
 				33CEB47122A05771004F2AC0 /* Flutter */,
@@ -156,7 +159,7 @@
 		33CC11242044D66E0003C045 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				33CC10F22044A3C60003C045 /* Assets.xcassets */,
+				EA1D29542C7E8823007FFC14 /* AppIcon.icns */,
 				33CC10F42044A3C60003C045 /* MainMenu.xib */,
 				33CC10F72044A3C60003C045 /* Info.plist */,
 			);
@@ -317,8 +320,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1D29532C7E76C3007FFC14 /* spoofdpi_arm in Resources */,
+				EA1D29552C7E8823007FFC14 /* AppIcon.icns in Resources */,
 				EAF5E6C32C79FD00002F92A0 /* spoofdpi in Resources */,
-				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
