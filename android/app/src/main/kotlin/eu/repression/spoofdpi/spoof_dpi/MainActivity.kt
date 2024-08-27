@@ -28,7 +28,8 @@ class MainActivity: FlutterActivity() {
                 "stop_proxy" -> stopProxyService(result)
                 "is_proxy_running" -> isProxyRunning(result)
                 "test_service" -> testService(result)
-                "open_binary_sc" -> openBinary(result)
+                "open_binary" -> openBinary(result)
+                "open_me" -> openMe(result)
                 else -> result.notImplemented()
             }
         }
@@ -81,7 +82,9 @@ class MainActivity: FlutterActivity() {
             startService(serviceIntent)
         }
 
-        requestVpnPermission()
+        if (call.argument<Boolean>("vpn_mode") == true) {
+            requestVpnPermission()
+        }
 
         result.success("Proxy service started, VPN request initiated")
     }

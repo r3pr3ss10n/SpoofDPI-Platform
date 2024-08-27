@@ -131,7 +131,7 @@ class HomePage extends HookWidget {
       } else {
         try {
           var params = buildParams();
-          await platform.invokeMethod('start_proxy', {'params': params});
+          await platform.invokeMethod('start_proxy', {'params': params, 'vpn_mode': SpUtil.getBool('use_vpn_mode', defValue: true)});
           isRunning.value = true;
         } on PlatformException catch (e) {
           print("Failed to start proxy: '${e.message}'.");
@@ -180,7 +180,11 @@ class SettingsPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final vpnMode = useState(SpUtil.getBool('use_vpn_mode', defValue: true)!);
+
     final enableDoh = useState(SpUtil.getBool('doh', defValue: true)!);
+
     final TextEditingController dnsController = useTextEditingController(
       text: SpUtil.getString('dns', defValue: '8.8.8.8'),
     );
@@ -191,6 +195,11 @@ class SettingsPage extends HookWidget {
     void updateDoh(bool? value) {
       enableDoh.value = value ?? true;
       SpUtil.putBool('doh', enableDoh.value);
+    }
+
+    void updateVpnMode(bool? value) {
+      vpnMode.value = value ?? true;
+      SpUtil.putBool('use_vpn_mode', vpnMode.value);
     }
 
     void updateDns(String value) {
@@ -213,12 +222,19 @@ class SettingsPage extends HookWidget {
         child: Column(
           children: [
             CheckboxListTile(
+              secondary: const Icon(Icons.vpn_key),
+              title: const Text('Use VPN mode'),
+              subtitle: const Text('If disabled - only Proxy server will be started'),
+              value: vpnMode.value,
+              onChanged: updateVpnMode,
+            ),
+            CheckboxListTile(
               secondary: const Icon(Icons.public),
               title: const Text('Enable DOH'),
               value: enableDoh.value,
               onChanged: updateDoh,
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             TextField(
               controller: dnsController,
               decoration: const InputDecoration(
