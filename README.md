@@ -2,6 +2,8 @@
 
 **SpoofDPI-Platform** is a solution for bypassing DPI-based internet restrictions. It serves as a user-friendly wrapper for the [SpoofDPI](https://github.com/xvzc/SpoofDPI).
 
+For the Russian version of this README, click [here](https://github.com/r3pr3ss10n/SpoofDPI-Platform/blob/main/README_ru.md) 🇷🇺.
+
 **Supported Platforms:**
 - Android
 - MacOS and Windows (coming soon!)
@@ -20,3 +22,6 @@ No root access is required! SpoofDPI-Platform operates in VPN mode.
 ## Acknowledgements
 
 A big thanks to [xvzc](https://github.com/xvzc/) for developing the [SpoofDPI](https://github.com/xvzc/SpoofDPI) application.
+
+---
+
