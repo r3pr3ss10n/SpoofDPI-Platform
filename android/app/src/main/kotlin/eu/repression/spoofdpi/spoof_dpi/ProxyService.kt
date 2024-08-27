@@ -22,7 +22,11 @@ class ProxyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         isRunning = true
         startForegroundService()
-        startSpoofDpi()
+
+        // Retrieve params from the Intent
+        val params = intent?.getStringExtra("params")
+        startSpoofDpi(params)
+
         return START_STICKY
     }
 
@@ -58,12 +62,12 @@ class ProxyService : Service() {
         startForeground(1, notification)
     }
 
-    private fun startSpoofDpi() {
+    private fun startSpoofDpi(params: String?) {
         CoroutineScope(Dispatchers.IO).launch {
             if (spoofDpiProcess != null) return@launch
             try {
                 val libPath = "${applicationInfo.nativeLibraryDir}/libspoofdpi.so"
-                val command = "$libPath --enable-doh --window-size 0"
+                val command = "$libPath $params"
                 spoofDpiProcess = Runtime.getRuntime().exec(command)
                 spoofDpiProcess?.waitFor()
             } catch (e: Exception) {
@@ -83,3 +87,4 @@ class ProxyService : Service() {
         return null
     }
 }
+

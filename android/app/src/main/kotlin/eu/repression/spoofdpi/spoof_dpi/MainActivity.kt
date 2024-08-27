@@ -3,12 +3,14 @@ package eu.repression.spoofdpi.spoof_dpi
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.net.VpnService
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity: FlutterActivity() {
@@ -22,12 +24,35 @@ class MainActivity: FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             when (call.method) {
-                "start_proxy" -> startProxyService(result)
+                "start_proxy" -> startProxyService(call, result)
                 "stop_proxy" -> stopProxyService(result)
                 "is_proxy_running" -> isProxyRunning(result)
+                "test_service" -> testService(result)
+                "open_binary_sc" -> openBinary(result)
                 else -> result.notImplemented()
             }
         }
+    }
+
+    private fun testService(result: MethodChannel.Result) {
+        openUrl("https://rutracker.org")
+        result.success(null)
+    }
+
+    private fun openBinary(result: MethodChannel.Result) {
+        openUrl("https://github.com/xvzc/SpoofDPI")
+        result.success(null)
+    }
+
+    private fun openMe(result: MethodChannel.Result) {
+        openUrl("https://github.com/r3pr3ss10n/SpoofDPI-Platform")
+        result.success(null)
+    }
+
+    private fun openUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 
     private fun askNotificationPermission() {
@@ -41,8 +66,12 @@ class MainActivity: FlutterActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun startProxyService(result: MethodChannel.Result) {
+    private fun startProxyService(call: MethodCall, result: MethodChannel.Result) {
         val serviceIntent = Intent(this, ProxyService::class.java)
+
+        // Get params from Flutter
+        val params = call.argument<String>("params")
+        serviceIntent.putExtra("params", params)
 
         askNotificationPermission()
 
