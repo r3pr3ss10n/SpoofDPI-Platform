@@ -5,7 +5,7 @@
 **Поддерживаемые платформы:**
 - Android
 - MacOS (Intel, Apple Silicon)
-- Windows (скоро будет доступно!)
+- Windows (amd64. Поддержки arm нет)
 
 ## Как начать
 
@@ -19,8 +19,11 @@
 ### Android
 Не требует ROOT прав. SpoofDPI-Platform работает в режиме VPN.
 
-### MacOS 
+### MacOS
 Программа работает в режиме системного Proxy.
+
+### Windows 
+Рабоатет в режиме системного Proxy. Если в той же сети работает на Mac/Android, но не работает на Windows, то попробуйте увиличить параметр Window size. 
 
 ## Благодарности
 
