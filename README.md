@@ -1,5 +1,9 @@
 # SpoofDPI-Platform
 
+## Archived
+SpoofDPI binary latest update was nearly 7 months ago (at the time of 10.04.2025), and it doesn't work due to DPI technologies update. Therefore, there's no point in this application. 
+I suggest trying other variants like ByeDPI and others.
+
 **SpoofDPI-Platform** is a solution for bypassing DPI-based internet restrictions. It serves as a user-friendly wrapper for the [SpoofDPI](https://github.com/xvzc/SpoofDPI).
 
 For the Russian version of this README, click [here](https://github.com/r3pr3ss10n/SpoofDPI-Platform/blob/main/README_ru.md) 🇷🇺.
